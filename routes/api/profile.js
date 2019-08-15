@@ -52,25 +52,25 @@ async(req,res)=> {
     // build social object
     profileFields.social = {};
     
-if(youtube) profileFields.social.youtube = youtube;
-if(twitter) profileFields.social.twitter = twitter;
-if(facebook) profileFields.social.facebook = facebook;
-if(linkedin) profileFields.social.linkedin = linkedin;    
-if(instagram) profileFields.social.instagram = instagram;
+    if(youtube) profileFields.social.youtube = youtube;
+    if(twitter) profileFields.social.twitter = twitter;
+    if(facebook) profileFields.social.facebook = facebook;
+    if(linkedin) profileFields.social.linkedin = linkedin;    
+    if(instagram) profileFields.social.instagram = instagram;
 
-try {
-    let profile = await Profile.findOne({user: req.user.id});
-    if (profile) {
-        profile = await Profile.findOneAndUpdate({user: req.user.id},{$set:profileFields},{new:true});
-        return res.json(profile);
+    try {
+        let profile = await Profile.findOne({user: req.user.id});
+        if (profile) {
+            profile = await Profile.findOneAndUpdate({user: req.user.id},{$set:profileFields},{new:true});
+            return res.json(profile);
+        }
+        profile = new Profile(profileFields);
+        await profile.save();
+        res.json(profile);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('server error')
     }
-    profile = new Profile(profileFields);
-    await profile.save();
-    res.json(profile);
-} catch (error) {
-    console.log(error);
-    res.status(500).send('server error')
-}
 });
 
 // get all profiles
@@ -97,6 +97,20 @@ router.get('/user/:user_id', async (req, res) => {
         if (error.kind == 'ObjectId') {
             return res.status(400).json({ msg: 'Profile not found' });
         }
+        res.status(500).send('Server error')
+    }
+})
+
+// delete profile,user and post
+router.delete('/',auth, async (req, res) => {
+    try {
+        // remove profile
+        await Profile.findOneAndRemove({user:req.user.id});
+        // remove user
+        await User.findOneAndRemove({ _id: req.user.id });
+        res.json({msg: 'User deleted'})
+    } catch (error) {
+        console.log(error.message);
         res.status(500).send('Server error')
     }
 })
