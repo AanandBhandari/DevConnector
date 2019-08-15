@@ -19,6 +19,7 @@ router.get('/me',auth,async(req,res)=> {
     }
 });
 
+// create and update profile
 router.post('/',
 [auth,
     [
@@ -70,6 +71,17 @@ try {
     console.log(error);
     res.status(500).send('server error')
 }
+});
+
+// get all profiles
+router.get('/',async(req,res)=>{
+    try {
+        const profiles = await Profile.find().populate('user',['name','avatar']);
+        res.json(profiles)
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send('Server error')
+    }
 })
 
 module.exports = router;
