@@ -142,7 +142,7 @@ const EditProfile = ({ createProfile, history,getCurrentProfile,profile:{profile
 }
 
 EditProfile.propTypes = {
-    editProfile: PropTypes.func.isRequired,
+    // editProfile: PropTypes.func.isRequired,
     getCurrentProfile: PropTypes.func.isRequired,
     profile:PropTypes.object.isRequired
 }
