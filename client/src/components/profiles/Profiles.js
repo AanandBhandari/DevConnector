@@ -10,7 +10,7 @@ const Profiles = ({getProfiles,profile: {
 }}) => {
     useEffect(()=>{
         getProfiles();
-    },[])
+    },[getProfiles])
     return (
         <Fragment> 
             {loading ? <Spiner/> : <Fragment>

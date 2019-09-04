@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from "react-redux";
 import { createProfile, getCurrentProfile } from '../../actions/profile'
-import profile from '../../reducer/profile';
 
 const EditProfile = ({ createProfile, history,getCurrentProfile,profile:{profile,loading} }) => {
     const [formData, setFormData] = useState({
@@ -37,7 +36,7 @@ const EditProfile = ({ createProfile, history,getCurrentProfile,profile:{profile
             youtube: loading || !profile.social ? '' : profile.social.youtube,
             instagram: loading || !profile.social ? '' : profile.social.instagram
         });
-    }, [loading])
+    }, [loading,getCurrentProfile])
     const { company, website, location, status, skills, githubusername, bio, twitter, facebook, linkedin, youtube, instagram } = formData
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
     const onSubmit = e => {

@@ -1,6 +1,4 @@
 import {GET_PROFILE,PROFILE_ERROR, CLEAR_PROFILE,UPDATE_PROFILE, GET_PROFILES, GET_REPOS} from '../actions/types'
-import { fail } from 'assert';
-import { stat } from 'fs';
 const initalState = {
     profile: null,
     profiles: [],
