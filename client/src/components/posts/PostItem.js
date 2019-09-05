@@ -57,7 +57,7 @@ PostItem.propTypes = {
     auth: PropTypes.object.isRequired,
     addLike: PropTypes.func.isRequired,
     removeLike: PropTypes.func.isRequired,
-    removePost: PropTypes.func.isRequired,
+    removePost: PropTypes.func
 
 }
 const mapStateToProps = state => ({
