@@ -8,6 +8,8 @@ import  ProfileTop  from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
+import ProfileGithub from './ProfileGithub';
+
 
 const Profile = ({match, getProfileById,profile:{profile, loading}, auth}) => {
     useEffect(()=> {
@@ -25,8 +27,8 @@ const Profile = ({match, getProfileById,profile:{profile, loading}, auth}) => {
                     <div className="profile-exp bg-white p-2">
                         <h2 className="text-primary">Experience</h2>
                         {profile.experience.length > 0 ? (<Fragment>
-                            {profile.experience.map(experience => (
-                                <ProfileExperience key={experience._id} experience={experience}/>
+                            {profile.experience.map(exp => (
+                                <ProfileExperience key={exp._id} experience={exp}/>
                             ))}
                         </Fragment>) : (<h4>No experience credentails</h4>)}
                     </div>
@@ -38,6 +40,10 @@ const Profile = ({match, getProfileById,profile:{profile, loading}, auth}) => {
                             ))}
                         </Fragment>) : (<h4>No education credentails</h4>)}
                     </div>
+                    {profile.githubusername && (
+                        <ProfileGithub username = {profile.githubusername}/>
+                        
+                    )}
                 </div>
             </Fragment>}
         </Fragment>
