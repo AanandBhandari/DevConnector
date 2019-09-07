@@ -1,0 +1,6 @@
+{
+    "mongoURI": "mongodb://Aanand:helloworld1@ds261567.mlab.com:61567/devconnector",
+    "jwtSecret": "helloworld1",
+    "githubClientId": "c51a3fb3c14ffc3b1dd5",
+    "githubClientSecret": "e4aa07f04bb30b1f90a9cb0854e9bb6f5b0cc970"
+}
